@@ -3,7 +3,7 @@ package com.sistemarestaurante.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.UUID;
+
 
 
 @MappedSuperclass
@@ -12,12 +12,12 @@ import java.util.UUID;
 public abstract  class Pessoa implements Serializable {
     private static long serialVersionUID=1L;
     @Id
-    private UUID id;
+    private long id;
     private  String nome;
     private String mail;
     private String telefone;
 
-    public Pessoa(UUID id, String nome, String mail, String telefone) {
+    public Pessoa(long id, String nome, String mail, String telefone) {
         this.id = id;
         this.nome = nome;
         this.mail = mail;
@@ -27,11 +27,11 @@ public abstract  class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

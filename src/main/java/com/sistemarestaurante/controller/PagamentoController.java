@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/pagamentos")
@@ -26,7 +26,7 @@ public class PagamentoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pagamento> getPagamentoById(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Pagamento> getPagamentoById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         Pagamento pagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pagamento com o ID:: " + id + " não encontrado"));
         return ResponseEntity.ok().body(pagamento);
     }
@@ -38,7 +38,7 @@ public class PagamentoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updatePagamento(@PathVariable(value = "id") UUID id, @RequestBody @Valid Pagamento pagamento) throws ResourceNotFoundException {
+    public ResponseEntity<Object> updatePagamento(@PathVariable(value = "id") long id, @RequestBody @Valid Pagamento pagamento) throws ResourceNotFoundException {
         Pagamento foundPagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pagamento com o ID:: " + id + " não encontrado"));
 
         foundPagamento.setDataPagamento(pagamento.getDataPagamento());
@@ -50,7 +50,7 @@ public class PagamentoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePagamento(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Object> deletePagamento(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         Pagamento pagamento = pagamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pagamento com o ID:: " + id + " não encontrado"));
         pagamentoRepository.delete(pagamento);
         return ResponseEntity.status(HttpStatus.OK).body("Pagamento apagado com sucesso");

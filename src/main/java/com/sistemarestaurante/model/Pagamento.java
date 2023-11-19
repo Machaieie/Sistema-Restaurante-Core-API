@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
+
 
 @Entity
 @Table(name = "Pagamentos")
@@ -12,7 +12,7 @@ public class Pagamento implements Serializable {
     private static long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private long id;
 
     private Date DataPagamento;
 
@@ -23,11 +23,11 @@ public class Pagamento implements Serializable {
     @JoinColumn(name = "reserva_id")
     private Reserva reserva;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

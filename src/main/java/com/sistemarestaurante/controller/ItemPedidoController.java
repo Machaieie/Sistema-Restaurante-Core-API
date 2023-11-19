@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/itempedidos")
@@ -26,7 +26,7 @@ public class ItemPedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemPedido> getItemPedidoById(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<ItemPedido> getItemPedidoById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         ItemPedido itemPedido = itemPedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("ItemPedido com o ID:: " + id + " não encontrado"));
         return ResponseEntity.ok().body(itemPedido);
     }
@@ -38,7 +38,7 @@ public class ItemPedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateItemPedido(@PathVariable(value = "id") UUID id, @RequestBody @Valid ItemPedido itemPedido) throws ResourceNotFoundException {
+    public ResponseEntity<Object> updateItemPedido(@PathVariable(value = "id") long id, @RequestBody @Valid ItemPedido itemPedido) throws ResourceNotFoundException {
         ItemPedido foundItemPedido = itemPedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("ItemPedido com o ID:: " + id + " não encontrado"));
 
         foundItemPedido.setNome(itemPedido.getNome());
@@ -51,7 +51,7 @@ public class ItemPedidoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteItemPedido(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Object> deleteItemPedido(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         ItemPedido itemPedido = itemPedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("ItemPedido com o ID:: " + id + " não encontrado"));
         itemPedidoRepository.delete(itemPedido);
         return ResponseEntity.status(HttpStatus.OK).body("ItemPedido apagado com sucesso");

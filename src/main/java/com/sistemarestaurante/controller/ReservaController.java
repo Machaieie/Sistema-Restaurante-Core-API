@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1")
@@ -26,7 +26,7 @@ public class ReservaController {
     }
 
     @GetMapping("reserva/{id}")
-    public ResponseEntity<Reserva> getReservationById(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException{
+    public ResponseEntity<Reserva> getReservationById(@PathVariable(value = "id") long id) throws ResourceNotFoundException{
         Reserva reserva = reservaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Reserva com o ID:: "+ id+ " não encontrado"));
         return ResponseEntity.ok().body(reserva);
     }
@@ -38,7 +38,7 @@ public class ReservaController {
     }
 
     @PutMapping("/reserva/{id}")
-    public ResponseEntity<Object> updateReservation(@PathVariable(value = "id") UUID id, @RequestBody @Valid Reserva reserva) throws ResourceNotFoundException{
+    public ResponseEntity<Object> updateReservation(@PathVariable(value = "id") long id, @RequestBody @Valid Reserva reserva) throws ResourceNotFoundException{
         Reserva founedReserva = reservaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Reserva com o ID:: "+ id+ " não encontrado"));
         founedReserva.setDia(reserva.getDia());
         founedReserva.setHora(reserva.getHora());
@@ -52,7 +52,7 @@ public class ReservaController {
     }
 
     @DeleteMapping("/reserva/{id}")
-    public ResponseEntity<Object> deleteProduct (@PathVariable(value="id") UUID id)throws ResourceNotFoundException{
+    public ResponseEntity<Object> deleteProduct (@PathVariable(value="id") long id)throws ResourceNotFoundException{
         Reserva reserva = reservaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Reserva com o ID:: "+ id+ " não encontrado"));
         reservaRepository.delete(reserva);
         return ResponseEntity.status(HttpStatus.OK).body("Reserva apagada com sucesso");

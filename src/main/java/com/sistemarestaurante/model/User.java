@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
+
 @Entity
 @Table(name = "Usuario")
 public class User extends  Pessoa{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private long id;
 
     @Column(nullable = false, length = 50)
     private String username;

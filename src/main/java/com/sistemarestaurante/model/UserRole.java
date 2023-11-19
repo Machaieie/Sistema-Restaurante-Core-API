@@ -1,6 +1,6 @@
 package com.sistemarestaurante.model;
 
-import java.util.UUID;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -12,7 +12,7 @@ public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private long id;
 
     @JsonIgnore
     @JoinColumn(name = "user_id")

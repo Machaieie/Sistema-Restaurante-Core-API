@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 @Entity
 @Table(name = "Reserva")
@@ -14,7 +14,7 @@ public class Reserva implements Serializable {
     private static long serialVersionUID=1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private long id;
     private Date dia;
     private Time hora;
     private  String nomeCliente;
@@ -31,11 +31,11 @@ public class Reserva implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reserva", cascade = CascadeType.ALL)
     private List<Pagamento> pagamentos;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

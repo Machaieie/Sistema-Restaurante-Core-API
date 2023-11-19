@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/pedidos")
@@ -26,7 +26,7 @@ public class PedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Pedido> getPedidoById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido com o ID:: " + id + " não encontrado"));
         return ResponseEntity.ok().body(pedido);
     }
@@ -38,7 +38,7 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updatePedido(@PathVariable(value = "id") UUID id, @RequestBody @Valid Pedido pedido) throws ResourceNotFoundException {
+    public ResponseEntity<Object> updatePedido(@PathVariable(value = "id") long id, @RequestBody @Valid Pedido pedido) throws ResourceNotFoundException {
         Pedido foundPedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido com o ID:: " + id + " não encontrado"));
         foundPedido.setMesa(pedido.getMesa());
         foundPedido.setItemPedidos(pedido.getItemPedidos());
@@ -46,7 +46,7 @@ public class PedidoController {
         return ResponseEntity.ok(updatedPedido);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletePedido(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Object> deletePedido(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Pedido com o ID:: " + id + " não encontrado"));
         pedidoRepository.delete(pedido);
         return ResponseEntity.status(HttpStatus.OK).body("Pedido apagado com sucesso");

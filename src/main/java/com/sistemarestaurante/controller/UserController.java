@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário com o ID:: " + id + " não encontrado"));
         return ResponseEntity.ok().body(user);
     }
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateUser(@PathVariable(value = "id") UUID id, @RequestBody @Valid User user) throws ResourceNotFoundException {
+    public ResponseEntity<Object> updateUser(@PathVariable(value = "id") long id, @RequestBody @Valid User user) throws ResourceNotFoundException {
         User foundUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário com o ID:: " + id + " não encontrado"));
         foundUser.setUsername(user.getUsername());
         foundUser.setPassword(user.getPassword());
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") UUID id) throws ResourceNotFoundException {
+    public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário com o ID:: " + id + " não encontrado"));
         userRepository.delete(user);
         return ResponseEntity.status(HttpStatus.OK).body("Usuário apagado com sucesso");
