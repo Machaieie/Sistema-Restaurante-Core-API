@@ -15,20 +15,16 @@ public class Reserva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     private Date dia;
     private Time hora;
+    private  String nomeCliente;
+    private String mailCliente;
+    private String telefoneCliente;
 
     //TODO: Relacionamento entre Reserva e mesa
     // lista de mesas associadas a reserva
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "reserva", cascade = CascadeType.ALL)
     private List<Mesa> mesas;
-
-    //TODO:  Relacionamento entre cliente e reserva
-    // Um Clinte pode ter varias reservas
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
 
     //TODO: Relacionamento entre pagamento e reserva
     // Uma reserva pode ter varios pagamentos
@@ -67,13 +63,7 @@ public class Reserva implements Serializable {
         this.mesas = mesas;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 
     public List<Pagamento> getPagamentos() {
         return pagamentos;
@@ -81,5 +71,29 @@ public class Reserva implements Serializable {
 
     public void setPagamentos(List<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getMailCliente() {
+        return mailCliente;
+    }
+
+    public void setMailCliente(String mailCliente) {
+        this.mailCliente = mailCliente;
+    }
+
+    public String getTelefoneCliente() {
+        return telefoneCliente;
+    }
+
+    public void setTelefoneCliente(String telefoneCliente) {
+        this.telefoneCliente = telefoneCliente;
     }
 }

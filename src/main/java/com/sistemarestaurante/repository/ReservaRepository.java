@@ -1,6 +1,5 @@
 package com.sistemarestaurante.repository;
 
-import com.sistemarestaurante.model.Cliente;
 import com.sistemarestaurante.model.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 

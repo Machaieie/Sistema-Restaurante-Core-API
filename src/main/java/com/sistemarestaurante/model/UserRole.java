@@ -1,5 +1,7 @@
 package com.sistemarestaurante.model;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -7,6 +9,10 @@ import jakarta.persistence.*;
 @Table(name = "user_role")
 public class UserRole {
     private static long serialVersionUID=1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @JsonIgnore
     @JoinColumn(name = "user_id")

@@ -15,7 +15,7 @@ public class Mesa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private int numLugares;
+    private int lugares;
     private boolean estado;
 
     //TODO: Relacionamento entre mesa e pedidos (Lista de pedidos)
@@ -36,11 +36,11 @@ public class Mesa implements Serializable {
     }
 
     public int getNumLugares() {
-        return numLugares;
+        return lugares;
     }
 
     public void setNumLugares(int numLugares) {
-        this.numLugares = numLugares;
+        this.lugares = numLugares;
     }
 
     public boolean isEstado() {

@@ -1,16 +1,17 @@
 package com.sistemarestaurante.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.UUID;
 
+
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "pessoa", discriminatorType = DiscriminatorType.STRING)
 public abstract  class Pessoa implements Serializable {
     private static long serialVersionUID=1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private  String nome;
     private String mail;

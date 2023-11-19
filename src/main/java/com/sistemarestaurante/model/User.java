@@ -4,9 +4,14 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 @Entity
 @Table(name = "Usuario")
 public class User extends  Pessoa{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column(nullable = false, length = 50)
     private String username;
@@ -14,8 +19,7 @@ public class User extends  Pessoa{
     @Column(length = 64)
     private String password;
 
-    @Column(length = 50)
-    private String sessionId;
+
 
     @Column(length = 64)
     private String textPassword;
@@ -41,13 +45,7 @@ public class User extends  Pessoa{
         this.password = password;
     }
 
-    public String getSessionId() {
-        return sessionId;
-    }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
 
     public String getTextPassword() {
         return textPassword;
