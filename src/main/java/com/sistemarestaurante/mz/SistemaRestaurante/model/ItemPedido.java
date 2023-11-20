@@ -1,10 +1,8 @@
-package com.sistemarestaurante.model;
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
 
-import com.fasterxml.jackson.core.base.GeneratorBase;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
 @Table(name = "ItemPedido")

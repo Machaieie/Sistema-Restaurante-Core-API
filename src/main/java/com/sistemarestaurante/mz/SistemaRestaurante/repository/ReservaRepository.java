@@ -1,6 +1,6 @@
-package com.sistemarestaurante.repository;
+package com.sistemarestaurante.mz.SistemaRestaurante.repository;
 
-import com.sistemarestaurante.model.Reserva;
+import com.sistemarestaurante.mz.SistemaRestaurante.model.Reserva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,6 @@
-package com.sistemarestaurante.model;
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -13,7 +14,8 @@ public class Pagamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date DataPagamento;
 
     private double ValorTotal;

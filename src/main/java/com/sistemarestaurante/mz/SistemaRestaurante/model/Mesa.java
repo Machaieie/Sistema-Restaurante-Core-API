@@ -1,10 +1,9 @@
-package com.sistemarestaurante.model;
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "Mesa")
@@ -16,7 +15,7 @@ public class Mesa implements Serializable {
     private long id;
 
     private int lugares;
-    private boolean estado;
+    private EstadoMesa estado;
 
     //TODO: Relacionamento entre mesa e pedidos (Lista de pedidos)
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mesa", cascade = CascadeType.ALL)
@@ -43,11 +42,11 @@ public class Mesa implements Serializable {
         this.lugares = numLugares;
     }
 
-    public boolean isEstado() {
+    public EstadoMesa isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(EstadoMesa estado) {
         this.estado = estado;
     }
 

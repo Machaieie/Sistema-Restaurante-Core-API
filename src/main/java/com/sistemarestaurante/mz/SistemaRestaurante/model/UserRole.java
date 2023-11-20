@@ -1,4 +1,4 @@
-package com.sistemarestaurante.model;
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
 
 
 

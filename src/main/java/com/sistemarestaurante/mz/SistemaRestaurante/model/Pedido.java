@@ -1,11 +1,9 @@
-package com.sistemarestaurante.model;
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.security.SecureRandomParameters;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
