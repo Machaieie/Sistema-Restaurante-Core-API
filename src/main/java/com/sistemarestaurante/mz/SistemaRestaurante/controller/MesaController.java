@@ -1,8 +1,8 @@
-package com.sistemarestaurante.controller;
+package com.sistemarestaurante.mz.SistemaRestaurante.controller;
 
-import com.sistemarestaurante.exceptions.ResourceNotFoundException;
-import com.sistemarestaurante.model.Mesa;
-import com.sistemarestaurante.repository.MesaRepository;
+import com.sistemarestaurante.mz.SistemaRestaurante.exceptions.ResourceNotFoundException;
+import com.sistemarestaurante.mz.SistemaRestaurante.model.Mesa;
+import com.sistemarestaurante.mz.SistemaRestaurante.repository.MesaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,15 +1,18 @@
-package com.sistemarestaurante.controller;
+package com.sistemarestaurante.mz.SistemaRestaurante.controller;
 
-import com.sistemarestaurante.exceptions.ResourceNotFoundException;
-import com.sistemarestaurante.model.Reserva;
-import com.sistemarestaurante.repository.ReservaRepository;
+import com.sistemarestaurante.mz.SistemaRestaurante.DTO.ReservaDTO;
+import com.sistemarestaurante.mz.SistemaRestaurante.exceptions.ResourceNotFoundException;
+import com.sistemarestaurante.mz.SistemaRestaurante.model.Reserva;
+import com.sistemarestaurante.mz.SistemaRestaurante.repository.ReservaRepository;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 
 @RestController
@@ -32,9 +35,13 @@ public class ReservaController {
     }
 
     @PostMapping("/reserva")
-    public Reserva createNewReservation(@Valid @RequestBody Reserva reserva){
-        Reserva saveReserva = reservaRepository.save(reserva);
-         return  saveReserva;
+    public ResponseEntity createNewReservation(@Valid @RequestBody ReservaDTO reservaDTO){
+        Reserva reserva = new Reserva();
+        BeanUtils.copyProperties(reservaDTO, reserva);
+        String codigoReserva = gerarCodigo();
+        reserva.setCodigoReserva(codigoReserva);
+        Reserva savedReserva = reservaRepository.save(reserva);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedReserva);
     }
 
     @PutMapping("/reserva/{id}")
@@ -58,6 +65,16 @@ public class ReservaController {
         return ResponseEntity.status(HttpStatus.OK).body("Reserva apagada com sucesso");
     }
 
+    public static String gerarCodigo() {
+        String caracteres = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            char caractere = caracteres.charAt(random.nextInt(caracteres.length()));
+            codigo.append(caractere);
+        }
+        return codigo.toString();
+    }
 
 
 

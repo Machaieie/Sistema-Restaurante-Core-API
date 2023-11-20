@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EntityScan("com.sistemarestaurante")
 @ComponentScan(basePackages = "com.sistemarestaurante")
 @SpringBootApplication
-
 public class SistemaRestauranteApplication {
 
 	public static void main(String[] args) {

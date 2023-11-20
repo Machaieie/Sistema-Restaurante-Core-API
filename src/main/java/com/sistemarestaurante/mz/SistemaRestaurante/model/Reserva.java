@@ -1,5 +1,5 @@
-package com.sistemarestaurante.model;
-
+package com.sistemarestaurante.mz.SistemaRestaurante.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -15,11 +15,40 @@ public class Reserva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private String codigoReserva;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dia;
+
+    @Temporal(TemporalType.TIME)
+    @JsonFormat(pattern = "HH:mm:ss")
     private Time hora;
     private  String nomeCliente;
     private String mailCliente;
     private String telefoneCliente;
+    
+    private int NumMesas;
+
+    private double taxaRserva;
+    
+
+   
+
+    public int getNumMesas() {
+        return NumMesas;
+    }
+
+    public void setNumMesas(int numMesas) {
+        NumMesas = numMesas;
+    }
+
+    public double getTaxaRserva() {
+        return taxaRserva;
+    }
+
+    public void setTaxaRserva(double taxaRserva) {
+        this.taxaRserva = taxaRserva;
+    }
 
     //TODO: Relacionamento entre Reserva e mesa
     // lista de mesas associadas a reserva
@@ -96,4 +125,13 @@ public class Reserva implements Serializable {
     public void setTelefoneCliente(String telefoneCliente) {
         this.telefoneCliente = telefoneCliente;
     }
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+    
 }
