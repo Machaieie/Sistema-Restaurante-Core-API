@@ -22,11 +22,14 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+
     @GetMapping("reserva")
     public List<Reserva> getAllReservations(){
         List<Reserva> reservas = reservaRepository.findAll();
         return reservas;
     }
+
+   
 
     @GetMapping("reserva/{id}")
     public ResponseEntity<Reserva> getReservationById(@PathVariable(value = "id") long id) throws ResourceNotFoundException{
